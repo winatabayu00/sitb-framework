@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.main');
+});
+
+Route::name('js.')->group(function() {
+    Route::get('dynamic.js', 'JsController@dynamic')->name('dynamic');
 });
