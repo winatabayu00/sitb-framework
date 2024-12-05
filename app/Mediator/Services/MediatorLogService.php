@@ -7,7 +7,7 @@ use App\Mediator\Models\MediatorLog;
 
 class MediatorLogService
 {
-    public function addNewData(array $inputs, string $process)
+    public function addNewData(array $inputs, string $process): MediatorLog
     {
         $mediatorLog = new MediatorLog();
         $mediatorLog->process = $process;
@@ -17,5 +17,7 @@ class MediatorLogService
         $mediatorLog->save();
 
         dispatch(new PerformMediatorLog($mediatorLog));
+
+        return $mediatorLog;
     }
 }

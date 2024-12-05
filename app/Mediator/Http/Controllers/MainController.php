@@ -4,7 +4,9 @@ namespace App\Mediator\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Mediator\Models\MediatorLog;
+use App\Mediator\Models\TerdugaTB;
 use App\Mediator\Services\MediatorLogService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -47,12 +49,17 @@ class MainController extends Controller
             'status_hiv_id' => ['required'],
         ])->validate();
 
+        DB::beginTransaction();
         $service = new MediatorLogService();
-        $service->addNewData(
+        $mediatorLog = $service->addNewData(
             $validation,
             MediatorLog::TERDUGA_TB
         );
 
+        $tbTerduga = new TerdugaTB();
+        $tbTerduga->save();
+        $tbTerduga->mediatorLogs()->attach($mediatorLog->id);
+        DB::commit();
     }
 
     /**

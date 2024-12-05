@@ -29,6 +29,7 @@ class MediatorLog extends Model
     use HasFactory;
 
     protected $table = 'mediator_logs';
+
     public const PENDING = 'pending';
     public const PROCESS = 'process';
     public const FAILED = 'failed';

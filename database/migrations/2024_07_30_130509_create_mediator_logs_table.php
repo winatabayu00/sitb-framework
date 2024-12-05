@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('mediator_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->comment('direct, schedule');
+            $table->string('type')->default('direct')->comment('direct, schedule');
             $table->string('process');
             $table->jsonb('payload');
             $table->jsonb('payload_send')->nullable();
