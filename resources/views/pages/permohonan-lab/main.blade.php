@@ -13,25 +13,23 @@
                         <th>No</th>
                         <th>Tanggal</th>
                         <th>Pasien</th>
-                        <th>Tipe Pasien</th>
-                        <th>Kriteria Terduga TB</th>
-                        <th>Status DM</th>
-                        <th>Status HIV</th>
-                        <th>Status Imunisasi BGC</th>
+                        <th>ID Suspect</th>
+                        <th>No Sediaan</th>
+                        <th>Alasan</th>
+                        <th>Jenis Pemeriksaan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($suspects as $key => $item)
+                    @forelse ($permohonanLab as $key => $item)
                         <tr>
-                            <td>{{ $key + 1 + ($suspects->currentPage() - 1) * $suspects->perPage() }}</td> <!-- Adjust No to reflect current page -->
-                            <td>{{ $item->created_at ? $item->created_at : '-' }}</td>
-                            <td>{{ $item->pasien ? dd($item->pasien) : '-' }}</td>
-                            <td>{{ $statusLabels[$item->tipe_pasien_id] ?? 'Tipe Pasien tidak diketahui' }}</td>
-                            <td>{{ $statusKriteriaTB[$item->terduga_tb_id] ?? '-' }}</td>
-                            <td>{{ $item->status_dm_id == '1' ? 'Ya' : 'Tidak' }}</td>
-                            <td>{{ $item->status_hiv_id == '1' ? 'Ya' : 'Tidak' }}</td>
-                            <td>{{ $item->imunisasi_bcg_id == '1' ? 'Ya' : 'Tidak' }}</td>
+                        <td>{{ $key + 1 + ($permohonanLab->currentPage() - 1) * $permohonanLab->perPage() }}</td>
+                        <td>{{ $item->tanggal_permohonan ? $item->tanggal_permohonan : '-' }}</td>
+                            <td>{{ $item->pasien ? $item->nama_pasien: '-' }}</td>
+                            <td>{{ $item->ID_SPECIMEN_SATUSEHAT ? $item->ID_SPECIMEN_SATUSEHAT : '-'}}</td>
+                            <td>{{ $item->no_sediaan ? $item->no_sediaan : '-' }}</td>
+                            <td>{{ $item->alasan ? $item->alasan : '-' }}</td>
+                            <td>{{ $item->jenis_pemeriksaan ? $item->jenis_pemeriksaan : '-' }}</td>
                             <td>
                                 <a href="{{ route('terduga-tb.show', $item->id) }}" class="btn btn-info btn-sm">Lihat</a>
                                 <a href="{{ route('terduga-tb.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
@@ -52,7 +50,6 @@
             
             <!-- Pagination links -->
             <!-- <div class="d-flex justify-content-center"> -->
-                <!-- {{ $suspects->links() }} -->
             <!-- </div> -->
         </div>
     </div>
