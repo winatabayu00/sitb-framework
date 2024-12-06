@@ -17,15 +17,32 @@
                 <i class="fa fa-columns"></i> <span>Permohonan Lab</span>
             </a>
         </li>
-        <li class="{{ request()->is('hasil-diagnosa*') ? 'active' : '' }}">
-            <a class="nav-link" href="#">
-                <i class="fa fa-columns"></i> <span>Hasil Diagnosa</span>
-            </a>
-        </li>
+
         <li class="{{ request()->is('hasil-lab*') ? 'active' : '' }}">
             <a class="nav-link" href="#">
                 <i class="fa fa-columns"></i> <span>Hasil Lab</span>
             </a>
         </li>
+
+        <li class="{{ request()->is('hasil-diagnosa*') ? 'active' : '' }}">
+            <a class="nav-link" href="#">
+                <i class="fa fa-columns"></i> <span>Hasil Diagnosis</span>
+            </a>
+        </li>
+
+
+        <li class="{{ request()->is('konfirmasi*') ? 'active' : '' }}">
+            <a class="nav-link" href="#">
+                <i class="fa fa-columns"></i> <span>Konfirmasi</span>
+            </a>
+        </li>
+
+
+        <li class="{{ request()->is('hasilAkhir*') ? 'active' : '' }}">
+            <a class="nav-link" href="#">
+                <i class="fa fa-columns"></i> <span>Hasil Akhir</span>
+            </a>
+        </li>
+        
     </ul>
 </aside>
