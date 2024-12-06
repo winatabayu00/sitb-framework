@@ -1,5 +1,6 @@
 <?php
 
+use App\Mediator\Http\Controllers\PermohonanLabController;
 use App\Mediator\Http\Controllers\TerdugaTBController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::resource('terduga-tb', TerdugaTBController::class);
+Route::resource('permohonan-lab', PermohonanLabController::class);
+
 Route::name('js.')->group(function() {
     Route::get('dynamic.js', 'JsController@dynamic')->name('dynamic');
 });

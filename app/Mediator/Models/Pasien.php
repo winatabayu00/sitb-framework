@@ -44,4 +44,7 @@ class Pasien extends Model
         'ket_identitas_pasien'
     ];
 
+
+    
+
 }
