@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ $key + 1 + ($suspects->currentPage() - 1) * $suspects->perPage() }}</td> <!-- Adjust No to reflect current page -->
                             <td>{{ $item->created_at ? $item->created_at : '-' }}</td>
-                            <td>{{ $item->pasien ? dd($item->pasien) : '-' }}</td>
+                            <td>{{ $item->pasien ? $item->pasien->nama_pasien : '-' }}</td>
                             <td>{{ $statusLabels[$item->tipe_pasien_id] ?? 'Tipe Pasien tidak diketahui' }}</td>
                             <td>{{ $statusKriteriaTB[$item->terduga_tb_id] ?? '-' }}</td>
                             <td>{{ $item->status_dm_id == '1' ? 'Ya' : 'Tidak' }}</td>
