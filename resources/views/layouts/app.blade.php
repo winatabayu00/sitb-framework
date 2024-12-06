@@ -14,6 +14,28 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components.css')}}">
+<style>
+
+    /* Custom pagination size */
+.pagination .page-link {
+    font-size: 14px; /* Adjust size as needed */
+    padding: 5px 10px; /* Adjust padding as needed */
+}
+
+.pagination .page-item {
+    margin: 0 3px; /* Reduce space between pagination items */
+}
+
+.pagination .page-link:hover {
+    background-color: #f0f0f0; /* Add hover effect */
+}
+/* Center the pagination */
+.pagination {
+    justify-content: center;
+    display: flex;
+}
+
+</style>
 </head>
 
 <body>

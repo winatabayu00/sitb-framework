@@ -6,12 +6,13 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-json": "*",
         "fruitcake/laravel-cors": "^2.0",
         "kemenkesri/satusehat-mediator-client-php": "^1.0.2",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "ext-json": "*"
+        "laravel/ui": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
