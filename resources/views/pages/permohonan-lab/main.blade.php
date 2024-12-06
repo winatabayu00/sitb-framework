@@ -31,9 +31,9 @@
                             <td>{{ $item->alasan ? $item->alasan : '-' }}</td>
                             <td>{{ $item->jenis_pemeriksaan ? $item->jenis_pemeriksaan : '-' }}</td>
                             <td>
-                                <a href="{{ route('terduga-tb.show', $item->id) }}" class="btn btn-info btn-sm">Lihat</a>
-                                <a href="{{ route('terduga-tb.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('terduga-tb.destroy', $item->id) }}" method="POST" class="d-inline">
+                                <a href="{{ route('permohonan-lab.show', $item->id) }}" class="btn btn-info btn-sm">Lihat</a>
+                                <a href="{{ route('permohonan-lab.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('permohonan-lab.destroy', $item->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-sm" type="submit">Hapus</button>
