@@ -4,9 +4,11 @@ namespace App\Mediator\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Mediator\Models\PermohonanLab;
-use App\Mediator\Models\TerdugaTB;
-use DB;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class PermohonanLabController extends Controller
 {
@@ -21,31 +23,15 @@ class PermohonanLabController extends Controller
      */
     public function index()
     {
-        // get Data.
         $permohonanLab = PermohonanLab::select('*')
-        ->addSelect(DB::raw('(SELECT nama_pasien FROM tb_pasien WHERE tb_pasien.id_pasien = tb_permohonan_lab.pasien) as nama_pasien'))
-        ->paginate(10);
-        $statusLabels = [
-            1 => 'Baru',
-            2 => 'Kambuh',
-            3 => 'Diobati setelah gagal kategori 1',
-            4 => 'Diobati setelah gagal kategori 2',
-            5 => 'Diobati setelah putus berobat',
-            6 => 'Diobati setelah gagal pengobatan lini 2',
-            7 => 'Pernah diobati tidak diketahui hasilnya',
-            8 => 'Tidak diketahui',
-            9 => 'Lain-lain',
-            10 => 'Diobati setelah gagal',
-        ];
+            ->addSelect(DB::raw('(SELECT nama_pasien FROM tb_pasien WHERE tb_pasien.id_pasien = tb_permohonan_lab.pasien) as nama_pasien'))
+            ->paginate(10);
 
+        $statusLabels = PermohonanLab::statusLabels();
 
-        $statusKriteriaTB = [
-            1 => 'TB SO',
-            2 => 'TB RO',
-        ];
+        $statusKriteriaTB = PermohonanLab::statusKriteria();
 
-
-        return view($this->menuActive .'.main', [
+        return view($this->menuActive . '.main', [
             'title' => $this->title,
             'menuActive' => $this->menuActive,
             'submnActive' => $this->submnActive,
@@ -56,22 +42,19 @@ class PermohonanLabController extends Controller
         ]);
     }
 
-
-    public function create(){
+    public function create()
+    {
 
         // Input Data
-        
+
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param string $id
+     * @return Application|Factory|View
      */
-    public function show($id)
+    public function show(string $id)
     {
-        // Example data (replace with a query to fetch data from the database)
         $suspect = [
             'id' => $id,
             'name' => 'John Doe',
@@ -79,18 +62,16 @@ class PermohonanLabController extends Controller
             'status' => 'Terduga',
         ];
 
-        return response()->json($suspect); // For demonstration
+        return view($this->menuActive . '.main'); // For demonstration
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         // Example delete logic (replace with actual database operations)
-        return response()->json(['message' => "Suspect with ID $id deleted successfully"]);
+        return back()->with('message', "Suspect with ID {$id} deleted successfully");
     }
 }
